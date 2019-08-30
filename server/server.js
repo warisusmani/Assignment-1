@@ -1,0 +1,24 @@
+const express = require('express');
+const app = express();
+const path = require('path');
+const http = require('http').Server(app);
+const fs = require('fs');
+const io = require('socket.io')(http);
+const bodyParser = require('body-parser');
+var cors = require('cors');
+app.use(cors());
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, '../dist/V2/')));
+app.use((req, res, next) => {
+ res.setHeader("Access-Control-Allow-Origin","*");
+ res.setHeader("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
+ res.setHeader("Access-Control-Allow-Methods","GET, POST, PATCH, DELETE, OPTIONS"); 
+ next();
+});
+require('./socket.js')(app, io);
+require('./listen.js')(http);
+require('./routes/auth.js')(app,fs);
+require('./routes/register.js')(app,fs);
+require('./routes/groups.js')(app,fs);
+require('./routes/channels.js')(app,fs);
