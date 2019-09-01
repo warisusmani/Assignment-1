@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label for="groups">
+      Groups
+    </label>
+  <select id="group" name="group" [(ngModel)]='groups' class="form-control" (change)="onEditClick($event.target.value)">
+  <option *ngFor="let groups of group" [value]="groups">{{ groups }} </option>
+  </select>
+  </div>

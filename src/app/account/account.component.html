@@ -1,0 +1,17 @@
+<p>
+  Welcome {{username}}
+</p>
+<p>Groups: {{group}}</p>
+<p>Admin:{{role}} </p>
+<div class="form-group">
+  <label for="channels">
+    Channels
+  </label>
+<select id="channel" name="channel" [(ngModel)]='channel' class="form-control" (change)="onEditClick($event.target.value)">
+<option *ngFor="let channel of channels" [value]="channel">{{ channel }} </option>
+</select>
+</div>
+<button (click)="OnCreateGroup()">Create a Group</button>
+<button (click)="OnCreateChannel()">Create a Channel</button>
+<button (click)="OnLogOut()">Log out</button>
+<button (click)="OnChat()">Goto Chat</button>
