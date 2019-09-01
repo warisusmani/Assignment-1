@@ -20,7 +20,6 @@ app.use((req, res, next) => {
           userObj = JSON.parse(data);
           for (let i=0;i<userObj.length;i++){
             if (userObj[i].name == uname){
-              role = userObj[i].role;
               //find first instance of user name and success
               res.send({'username':uname,'success':true});
               return;

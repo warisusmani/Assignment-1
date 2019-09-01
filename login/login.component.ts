@@ -15,7 +15,7 @@ const httpOptions = {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username:string = '';
+  username;
   //password:string = '';
   
   constructor(private router:Router, private form:FormsModule, private httpService: HttpClient) { }

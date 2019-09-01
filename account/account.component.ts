@@ -38,8 +38,6 @@ export class AccountComponent implements OnInit {
     data => {
       if(data['success'] == true) {
         this.group = data.group;
-        console.log("Groups found: " + this.group);
-        
       }
       else {
         console.log("No group found");
@@ -82,7 +80,6 @@ export class AccountComponent implements OnInit {
       data => {
         if(data['success'] == true) {
           this.channels = data.channels;
-         console.log(this.channels);
         }
         else {
           this.channels = null;
@@ -95,12 +92,15 @@ export class AccountComponent implements OnInit {
     );
   }
   onEditClick(channel: any) {
-    console.log('channel name', channel)
+    localStorage.setItem("channel",channel);
 }
   OnLogOut() {
     localStorage.clear();
     this.router.navigateByUrl('/login');
   
+  }
+  OnChat() {
+    this.router.navigateByUrl('/chat');
   }
   OnCreateGroup() {
     this.router.navigateByUrl('/group');

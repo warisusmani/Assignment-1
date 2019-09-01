@@ -1,0 +1,30 @@
+I assume that the problem is not with HTTP DELETE request. The concern is with how to remove a child node. See the below code snippet. You can pass the groups as an array to the deleteGroup function and see the result.
+
+var data = [{
+    "name": "Allan",
+    "role": ["Group Admin", "Super Admin"],
+    "group": ["Cool-Group", "ss"]
+}, {
+    "name": "Terry",
+    "role": ["Group Admin"],
+    "group": ["Cool-Group"]
+}];
+
+function deleteGroup(groupArray) {
+  groupArray.map((needle)=>{
+    data.map((userObj) => {
+      if(userObj.group) {
+        userObj.group.map((groupName, index)=>{
+          if (groupName == needle){
+            userObj.group.splice(index)
+          }
+        });
+      } else {
+        console.log("No group present for this user.")
+      }
+    });
+  });
+  return data
+}
+//uncomment below line & run in console to see the results
+//console.log(deleteGroup(["Cool-Group"]))
