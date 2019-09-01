@@ -13,6 +13,8 @@ import { SocketService } from './services/socket/socket.service';
 import { HttpClientModule } from '@angular/common/http';
 import { GroupComponent } from './group/group.component';
 import { ChannelComponent } from './channel/channel.component';
+import { UserComponent } from './user/user.component';
+import { RemoveComponent } from './remove/remove.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ChannelComponent } from './channel/channel.component';
     ChatComponent,
     NotfoundComponent,
     GroupComponent,
-    ChannelComponent
+    ChannelComponent,
+    UserComponent,
+    RemoveComponent
   ],
   imports: [
     BrowserModule,

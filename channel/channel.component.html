@@ -1,0 +1,13 @@
+<h2>Create a Channel: </h2>
+<div class="form-group">
+    <label for="groups">
+      Groups
+    </label>
+  <select id="group" name="group" [(ngModel)]='groups' class="form-control" (change)="onEditClick($event.target.value)">
+  <option *ngFor="let groups of group" [value]="groups">{{ groups }} </option>
+  </select>
+  </div>
+  <p>Channel Name: </p>
+  <input type="channel" placeholder="ChannelName" [(ngModel)]='channelname' name="channel" id="channel" required>
+  <button (click)="OnChannel()">Create Channel</button> <br>
+

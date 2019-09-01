@@ -9,13 +9,13 @@ module.exports = function(app,fs){
       app.post('/api/groups', (req, res) => {
      var uname = req.body.username; 
      var userObj;
-     var group;
+     var group = [];
 
      fs.readFile('authdata.json', 'utf8', function(err, data){
          if (err) {
              console.log(err);
              //Some error happended opening the file. No Success
-             res.send({'username':'','success':false});
+             res.send({'group':'','success':false});
          } else {
          userObj = JSON.parse(data);
          for (let i=0;i<userObj.length;i++){
@@ -27,7 +27,7 @@ module.exports = function(app,fs){
            }
          }
          //no username was found that matched
-         res.send({'username':uname,'success':false});
+         res.send({'group':group,'success':false});
 
      }});
 

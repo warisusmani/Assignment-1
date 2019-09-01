@@ -1,0 +1,9 @@
+<div class="form-group">
+  <label for="groups">
+    Groups
+  </label>
+<select id="group" name="group" [(ngModel)]='groups' class="form-control">
+<option *ngFor="let groups of group" [value]="groups">{{ groups }} </option>
+</select>
+</div>
+<button (click)="RemoveGroup()">Remove Group</button>

@@ -1,0 +1,6 @@
+{
+    "group": {
+        "Cool-Group": {"channels": ["1","2"]},
+        "Nerd-Group": {"channels": ["3","4"]}
+    }
+}

@@ -1,0 +1,37 @@
+<div *ngIf="issuper">
+<h2>Create a user</h2>
+  <input type="user" placeholder="UserName" [(ngModel)]='username' name="user" id="user">
+  <button (click)="OnUser()">Create User</button>
+</div>
+  <h2>Add User to a channel</h2>
+  <div class="form-group">
+    <label for="user">
+      User
+    </label>
+  <select id="user" name="user" [(ngModel)]='chosenuser' class="form-control">
+  <option *ngFor="let user of users" [value]="user">{{ user }} </option>
+  </select>
+  </div>
+  <div class="form-group">
+    <label for="channel">
+      Channel
+    </label>
+  <select id="channel" name="channel" [(ngModel)]='chosenchannel' class="form-control">
+  <option *ngFor="let channels of channel" [value]="channels">{{ channels }} </option>
+  </select>
+  </div>
+  <button (click)="OnChannel()">Add User to Channel</button>
+  <h2>Assign user a role</h2>
+  <div class="form-group">
+    <label for="users2">
+      Users
+    </label>
+  <select id="users2" name="users2" [(ngModel)]='chosenuser2' class="form-control">
+  <option *ngFor="let userss of users2" [value]="userss">{{ userss }} </option>
+  </select>
+  </div>
+  <select [(ngModel)]='chosenrole'>
+    <option value="Group Admin" >Group Admin</option>
+    <option *ngIf="issuper||isadmin" value="Super Admin" >Super Admin</option>
+  </select>
+  <button (click)="OnRole()">Assign User a Role</button>

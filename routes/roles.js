@@ -32,12 +32,54 @@ module.exports = function(app,fs){
               res.send({'role':role,'success':false});
     
           }});
-    
-    
-    
-    
-    
+ 
     
         });
+
+        app.post('/api/roles', (req, res) => {
+    
+          var isUser = 0;
+          var userObj;
+          var user = req.body.user;
+          var roles = req.body.role;
+          //localhost:3000/api/reg?username=abcdefg
+          
+    
+          fs.readFile('authdata.json','utf-8', function(err, data){
+              if (err){
+                  console.log(err);
+              } else {
+              userObj = JSON.parse(data);
+              for (let i=0;i<userObj.length;i++){
+                if (userObj[i].name == user){
+                  for(let j=0;j<userObj.length;j++) {
+                  if(userObj[i].role[j] == roles) {
+                  //Check for duplicates
+                  isUser = 1;
+                  }
+                }
+                }
+              }
+              if (isUser > 0){
+                //Name already exists in the file
+                 res.send({'username':'','roles':'','success':false});
+               }else{
+                 //Add name to list of names
+                 for(let i=0;i<userObj.length;i++) {
+                  if(userObj[i].name == user) {
+                     userObj[i].role.push(roles);
+                  }
+                 }
+                 //Prepare data for writing (convert to a string)
+                 var newdata = JSON.stringify(userObj);
+                 fs.writeFile('authdata.json',newdata,'utf-8',function(err){
+                   if (err) throw err;
+                   //Send response that registration was successfull.
+                   res.send({'username':user,'roles':roles,'success':true});
+                  });
+               }
+             }
+          })
+  })
     }
     

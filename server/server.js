@@ -23,5 +23,8 @@ require('./routes/register.js')(app,fs);
 require('./routes/groups.js')(app,fs);
 require('./routes/channels.js')(app,fs);
 require('./routes/roles.js')(app,fs);
+require('./routes/user.js')(app,fs);
+require('./routes/deletegroup.js')(app,fs);
+require('./routes/listchannels.js')(app,fs);
 require('./routes/creategroup.js')(app,fs);
 require('./routes/createchannel.js')(app,fs);

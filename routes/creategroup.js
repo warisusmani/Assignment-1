@@ -4,6 +4,7 @@ module.exports = function(app,fs){
     
           var isGroup = 0;
           var userObj;
+          var groupObj;
           //localhost:3000/api/reg?username=abcdefg
           var group = req.body.group;
     
@@ -34,6 +35,38 @@ module.exports = function(app,fs){
                }
              }
           })
+        
+          fs.readFile('groupdata.json','utf-8', function(err, data){
+            if (err){
+                console.log(err);
+            } else {
+            groupObj = JSON.parse(data);
+            for (let i=0;i<groupObj.length;i++){
+              if (groupObj[i].group == group){
+                //Check for duplicates
+                isGroup = 1;
+              }
+            }
+            if (isGroup > 0){
+              //Name already exists in the file
+               res.send({'newgroup':'','success':false});
+             }else{
+               //Add name to list of names
+               for(let i=0;i<groupObj.length;i++) {
+               groupObj[i].group.push(group);
+               }
+               //Prepare data for writing (convert to a string)
+               var newdata2 = JSON.stringify(groupObj);
+               fs.writeFile('groupdata.json',newdata2,'utf-8',function(err){
+                 if (err) throw err;
+                 //Send response that registration was successfull.
+                 res.send({'newgroup':group,'success':true});
+                });
+             }
+           }
+        }) 
+
+
         })
         }
     
