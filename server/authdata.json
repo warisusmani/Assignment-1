@@ -1,2 +1,1 @@
-[{"name":"Allan", "group": ["Cool-Group"]},{"name":"Julie", "group": ["Nerd Group"]},{"name":"Terry", "group": ["Cool-Group"]},{"name":"Kaitlyn", "group": ["Nerd-Group"]},{"name":"Alex"}]
-
+[{"name":"Allan","role":"Group Admin","group":["Cool-Group"]},{"name":"Julie","group":["Nerd Group"],"role":"Super Admin"},{"name":"Terry","group":["Cool-Group"]},{"name":"Kaitlyn","group":["Nerd-Group"]},{"name":"Alex"}]
