@@ -25,28 +25,27 @@ export class LoginComponent implements OnInit {
     
    
   }
-  loginUser(event){
-    event.preventDefault();
+  loginUser(){
+    //event.preventDefault();
   
 //    if (this.username == "Saad" && this.password == "123"){
       if (typeof(Storage) != "undefined") {
         console.log('storage ready');
-        
-        this.httpService.get<any>(this.apiURL + 'auth', {params: {username: this.username}}).subscribe(
-          data => {
-            if(data['success'] == true) {
-              localStorage.setItem('username',this.username);
-              this.router.navigateByUrl('/account');
-            }
-            else {
-              alert("Username or Password is Wrong");
-            }
-          },
-          (err: HttpErrorResponse) => {
-            console.log (err.message);
-          }
-        );
       }
+      this.httpService.get<any>(this.apiURL + 'auth', {params: {username: this.username}}).subscribe(
+        data => {
+          if(data.success === true) {
+            localStorage.setItem('username',this.username);
+            this.router.navigateByUrl('/account');
+          }
+          else {
+            alert("Username or Password is Wrong");
+          }
+        },
+        (err: HttpErrorResponse) => {
+          console.log (err.message);
+        }
+      );
      // }
    
      

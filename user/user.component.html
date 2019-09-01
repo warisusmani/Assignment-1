@@ -8,7 +8,7 @@
     <label for="user">
       User
     </label>
-  <select id="user" name="user" [(ngModel)]='chosenuser' class="form-control">
+  <select id="user" name="user" [(ngModel)]='chosenuser' class="form-control" (change)="userSelected($event.target.value)">
   <option *ngFor="let user of users" [value]="user">{{ user }} </option>
   </select>
   </div>
@@ -30,8 +30,10 @@
   <option *ngFor="let userss of users2" [value]="userss">{{ userss }} </option>
   </select>
   </div>
+  <label>Role </label>
   <select [(ngModel)]='chosenrole'>
-    <option value="Group Admin" >Group Admin</option>
-    <option *ngIf="issuper||isadmin" value="Super Admin" >Super Admin</option>
+    <option *ngIf="issuper" value="Group Admin" >Group Admin</option>
+    <option *ngIf="issuper" value="Super Admin" >Super Admin</option>
+    <option *ngIf="isadmin" value="Group Assis" >Group Assis</option>
   </select>
   <button (click)="OnRole()">Assign User a Role</button>

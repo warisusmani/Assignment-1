@@ -15,6 +15,7 @@ import { GroupComponent } from './group/group.component';
 import { ChannelComponent } from './channel/channel.component';
 import { UserComponent } from './user/user.component';
 import { RemoveComponent } from './remove/remove.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RemoveComponent } from './remove/remove.component';
     GroupComponent,
     ChannelComponent,
     UserComponent,
-    RemoveComponent
+    RemoveComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,7 @@ export class AccountComponent implements OnInit {
   private apiURL = 'http://localhost:3000/api/';
   username: string;
   group: string;
-  channels : string;
+  channels = [];
   channel: string; //value of selected channel
   role: string;
   groupadmin:boolean=false;
@@ -34,6 +34,24 @@ export class AccountComponent implements OnInit {
   //     console.log (err.message);
   //   }
   // );
+  this.httpService.post<any>(this.apiURL + 'userchannels', {user: this.username}).subscribe(
+    data => {
+      if(data.success === true) {
+        this.channels = data.channels;
+      }
+      else {
+        this.channels = null;
+        console.log("No channels found");
+      }
+    },
+    (err: HttpErrorResponse) => {
+      console.log (err.message);
+    }
+  );
+
+
+
+
   this.httpService.post<any>(this.apiURL + 'groups',{username: this.username}).subscribe(
     data => {
       if(data['success'] == true) {
@@ -75,22 +93,9 @@ export class AccountComponent implements OnInit {
 
   }
 
-  onGroupClick(ss: any) {
-    this.httpService.post<any>(this.apiURL + 'channels', {chosengroup: ss}).subscribe(
-      data => {
-        if(data['success'] == true) {
-          this.channels = data.channels;
-        }
-        else {
-          this.channels = null;
-          console.log("No channels found");
-        }
-      },
-      (err: HttpErrorResponse) => {
-        console.log (err.message);
-      }
-    );
-  }
+ 
+    
+  
   onEditClick(channel: any) {
     localStorage.setItem("channel",channel);
 }
@@ -101,6 +106,9 @@ export class AccountComponent implements OnInit {
   }
   OnChat() {
     this.router.navigateByUrl('/chat');
+  }
+  OnHistory() {
+    this.router.navigateByUrl('/history');
   }
   OnCreateGroup() {
     this.router.navigateByUrl('/group');

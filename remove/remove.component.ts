@@ -14,6 +14,10 @@ export class RemoveComponent implements OnInit {
   private apiURL = 'http://localhost:3000/api/';
   group;
   groups;
+  channel;
+  channels = [];
+  user;
+  users = [];
   ngOnInit() {
     this.httpService.get<any>(this.apiURL + 'createchannel').subscribe(
       data => {
@@ -29,11 +33,45 @@ export class RemoveComponent implements OnInit {
         console.log (err.message);
       }
     );
+
+    this.httpService.get<any>(this.apiURL + 'getchannels').subscribe(
+      data => {
+        if(data.success == true) {
+          this.channels = data.channels;
+          
+        }
+        else {
+          console.log("No groups found");
+        }
+      },
+      (err: HttpErrorResponse) => {
+        console.log (err.message);
+      }
+    );
+  
+    this.httpService.get<any>(this.apiURL + 'user').subscribe(
+      data => {
+        if(data.success == true) {
+          this.users = data.users;
+          
+        }
+        else {
+          console.log("No groups found");
+        }
+      },
+      (err: HttpErrorResponse) => {
+        console.log (err.message);
+      }
+    );
+
   }
+
+  
+
   RemoveGroup() {
     this.httpService.post<any>(this.apiURL + 'deletegroup',{group:this.groups}).subscribe(
       data => {
-        if(data['success'] == true) {
+        if(data.success === true) {
           alert(data.group + " is removed");
         }
         else {
@@ -44,6 +82,39 @@ export class RemoveComponent implements OnInit {
         console.log (err.message);
       }
     );
+  }
+
+  RemoveChannel() {
+    this.httpService.post<any>(this.apiURL + 'deletechannel',{channel:this.channel}).subscribe(
+      data => {
+        if(data.success === true) {
+          alert(data.channel + " is removed");
+        }
+        else {
+          alert("No groups found");
+        }
+      },
+      (err: HttpErrorResponse) => {
+        console.log (err.message);
+      }
+    );
+  }
+  
+  RemoveUser() {
+    this.httpService.post<any>(this.apiURL + 'deleteuser',{user:this.user}).subscribe(
+      data => {
+        if(data.success === true) {
+          alert(data.user + " is removed");
+        }
+        else {
+          alert("No groups found");
+        }
+      },
+      (err: HttpErrorResponse) => {
+        console.log (err.message);
+      }
+    );
+
   }
 
 }

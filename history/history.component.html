@@ -1,0 +1,6 @@
+<h2>Welcome {{username}} to channel {{channel}}</h2>
+
+
+<p>You are viewing the history for channel {{channel}}</p>
+
+<button *ngIf="username" (click)="logout()" class="logout">Leave Chat</button>

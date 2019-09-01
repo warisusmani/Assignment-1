@@ -67,11 +67,14 @@ export class UserComponent implements OnInit {
 
  
 
-    this.httpService.get<any>(this.apiURL + 'listchannels').subscribe(
+  }
+  
+  userSelected(user: any) {
+    this.httpService.post<any>(this.apiURL + 'groupchannels',{user:user}).subscribe(
       data => {
-        if(data['success'] == true) {
+        if(data.success === true) {
           this.channel = data.channels;
-          console.log(this.channel);  
+            
         }
         else {
           console.log("No channels found");
@@ -81,9 +84,7 @@ export class UserComponent implements OnInit {
         console.log (err.message);
       }
     );
-
-  }
-  
+    }
   OnUser() {
     this.httpService.get<any>(this.apiURL + 'register', {params: {username: this.username}}).subscribe(
       data => {

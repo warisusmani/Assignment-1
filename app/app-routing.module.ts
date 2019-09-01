@@ -8,6 +8,7 @@ import { ChatComponent } from './chat/chat.component';
 import { UserComponent } from './user/user.component';
 import {RemoveComponent} from './remove/remove.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { HistoryComponent } from './history/history.component';
 const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'account', component:AccountComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'user', component:UserComponent},
   {path:'remove', component:RemoveComponent},
   {path:'404', component:NotfoundComponent},
+  {path: 'history', component: HistoryComponent},
   {path:'**', redirectTo:'login'}
 ];
 

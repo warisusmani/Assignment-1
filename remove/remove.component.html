@@ -7,3 +7,25 @@
 </select>
 </div>
 <button (click)="RemoveGroup()">Remove Group</button>
+<br>
+
+<div class="form-group" style="margin-top:30px;">
+  <label for="channels">
+    Channels
+  </label>
+<select id="channel" name="channel" [(ngModel)]='channel' class="form-control">
+<option *ngFor="let ss of channels" [value]="ss">{{ ss }} </option>
+</select>
+</div>
+<button (click)="RemoveChannel()">Remove Channel</button>
+<br>
+
+<div class="form-group" style="margin-top:30px;">
+  <label for="users">
+    Users
+  </label>
+<select id="user" name="user" [(ngModel)]='user' class="form-control">
+<option *ngFor="let ss of users" [value]="ss">{{ ss }} </option>
+</select>
+</div>
+<button (click)="RemoveUser()">Remove User</button>

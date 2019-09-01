@@ -7,7 +7,7 @@
   <label for="groups">
     Group
   </label>
-<select id="group" name="group" [(ngModel)]='selectgroup' class="form-control" (change)="onGroupClick($event.target.value)">
+<select id="group" name="group" [(ngModel)]='selectgroup' class="form-control">
 <option *ngFor="let opt of group" [value]="opt">{{ opt }} </option>
 </select>
 </div>
@@ -26,3 +26,4 @@
 </div>
 <button (click)="OnLogOut()">Log out</button>
 <button (click)="OnChat()">Goto Chat</button>
+<button (click)="OnHistory()">Channel History</button>
